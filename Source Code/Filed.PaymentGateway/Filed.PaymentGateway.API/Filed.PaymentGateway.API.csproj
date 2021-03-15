@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Filed.PaymentGateway.BusinessInterface\Filed.PaymentGateway.BusinessInterface.csproj" />
+    <ProjectReference Include="..\Filed.PaymentGateway.BusinessManager\Filed.PaymentGateway.BusinessManager.csproj" />
+    <ProjectReference Include="..\Filed.PaymentGateway.BusinessModel\Filed.PaymentGateway.BusinessModel.csproj" />
+    <ProjectReference Include="..\Filed.PaymentGateway.DataImplementation\Filed.PaymentGateway.DataImplementation.csproj" />
+    <ProjectReference Include="..\Filed.PaymentGateway.DataInterface\Filed.PaymentGateway.DataInterface.csproj" />
+    <ProjectReference Include="..\Filed.PaymentGateway.Data\Filed.PaymentGateway.Data.csproj" />
+    <ProjectReference Include="..\Filed.PaymentGateway.PaymentProcessor\Filed.PaymentGateway.PaymentProcessor.csproj" />
+  </ItemGroup>
+
+
+</Project>
