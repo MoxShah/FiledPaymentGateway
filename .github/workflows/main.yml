@@ -3,7 +3,9 @@ name: Auto PR to Repos B and C
 on:
   pull_request:
     types: [opened]
-
+permissions:
+  contents: read
+  pages: write  
 jobs:
   create_prs:
     runs-on: ubuntu-latest
