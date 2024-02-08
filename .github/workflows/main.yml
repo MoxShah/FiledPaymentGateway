@@ -12,15 +12,28 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Get branch name
+        id: branch_name
+        run: echo "::set-output name=branch::$(echo $GITHUB_REF | awk 'BEGIN {FS="/"} {print $3}')"
+
+      - name: Create feature branch in Repo B
+        run: |
+          git checkout -b ${{ steps.branch_name.outputs.branch }}
+          git push -u origin ${{ steps.branch_name.outputs.branch }}
+
       - name: Create PR in Repo B
         uses: peter-evans/create-pull-request@v3
         with:
           token: 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
           title: Automatically generated PR from Repo A
           body: This PR was automatically generated from a PR in Repo A.
-          branch: main
+          branch: ${{ steps.branch_name.outputs.branch }}
           base: main
-          # Additional options for specifying changes to be included in the PR
+
+      - name: Create feature branch in Repo C
+        run: |
+          git checkout -b ${{ steps.branch_name.outputs.branch }}
+          git push -u origin ${{ steps.branch_name.outputs.branch }}
 
       - name: Create PR in Repo C
         uses: peter-evans/create-pull-request@v3
@@ -28,6 +41,5 @@ jobs:
           token: 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
           title: Automatically generated PR from Repo A
           body: This PR was automatically generated from a PR in Repo A.
-          branch: main
+          branch: ${{ steps.branch_name.outputs.branch }}
           base: main
-          # Additional options for specifying changes to be included in the PR
