@@ -20,7 +20,7 @@ jobs:
         run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
-          git config --global credential.helper store
+          git config credential.helper 'cache --timeout=3600'  # Cache credentials for 1 hour
 
       - name: Create feature branch in Repo B
         run: |
@@ -30,7 +30,7 @@ jobs:
       - name: Create PR in Repo B
         uses: peter-evans/create-pull-request@v3
         with:
-          token: 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
+          token: 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  # Replace with correct token for Repo B
           title: Automatically generated PR from Repo A
           body: This PR was automatically generated from a PR in Repo A.
           branch: ${{ steps.branch_name.outputs.branch }}
@@ -44,7 +44,7 @@ jobs:
       - name: Create PR in Repo C
         uses: peter-evans/create-pull-request@v3
         with:
-          token: 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
+          token: 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  # Replace with correct token for Repo C
           title: Automatically generated PR from Repo A
           body: This PR was automatically generated from a PR in Repo A.
           branch: ${{ steps.branch_name.outputs.branch }}
