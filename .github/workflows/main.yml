@@ -23,7 +23,7 @@ jobs:
       - name: Create feature branch in Repo B
         run: |
           git checkout -b Dev
-          git push -u https://MoxShah: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@github.com/MoxShah/Dev ${{ steps.branch_name.outputs.branch }}
+          git push -u https://MoxShah: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@github.com/MoxShah/D Dev
 
       - name: Create PR in Repo B
         uses: peter-evans/create-pull-request@v3
