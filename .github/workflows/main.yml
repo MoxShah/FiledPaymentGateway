@@ -15,9 +15,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        with:
-          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
-          fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
+     
       - name: Get branch name
         id: branch_name
         run: echo "::set-output name=branch::$(echo $GITHUB_REF | awk 'BEGIN {FS="/"} {print $3}')"
@@ -25,12 +23,12 @@ jobs:
       - name: Create feature branch in Repo B
         run: |
           git checkout -b ${{ steps.branch_name.outputs.branch }}
-          git push -u https://MoxShah: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@github.com/MoxShah/D ${{ steps.branch_name.outputs.branch }}
+          git push -u https://MoxShah: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@github.com/MoxShah/D ${{ steps.branch_name.outputs.branch }}
 
       - name: Create PR in Repo B
         uses: peter-evans/create-pull-request@v3
         with:
-          token: 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
+          token: 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
           title: Automatically generated PR from Repo A
           body: This PR was automatically generated from a PR in Repo A.
           branch: ${{ steps.branch_name.outputs.branch }}
@@ -39,12 +37,12 @@ jobs:
       - name: Create feature branch in Repo C
         run: |
           git checkout -b ${{ steps.branch_name.outputs.branch }}
-          git push -u https://MoxShah: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@github.com/MoxShah/E ${{ steps.branch_name.outputs.branch }}
+          git push -u https://MoxShah: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@github.com/MoxShah/E ${{ steps.branch_name.outputs.branch }}
 
       - name: Create PR in Repo C
         uses: peter-evans/create-pull-request@v3
         with:
-          token: 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
+          token: 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
           title: Automatically generated PR from Repo A
           body: This PR was automatically generated from a PR in Repo A.
           branch: ${{ steps.branch_name.outputs.branch }}
