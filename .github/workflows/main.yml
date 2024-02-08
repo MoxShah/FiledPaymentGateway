@@ -16,6 +16,12 @@ jobs:
         id: branch_name
         run: echo "::set-output name=branch::$(echo $GITHUB_REF | awk 'BEGIN {FS="/"} {print $3}')"
 
+      - name: Set up Git authentication
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git config --global credential.helper store
+
       - name: Create feature branch in Repo B
         run: |
           git checkout -b ${{ steps.branch_name.outputs.branch }}
