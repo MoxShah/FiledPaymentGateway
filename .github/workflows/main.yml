@@ -1,0 +1,33 @@
+name: Auto PR to Repos B and C
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  create_prs:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Create PR in Repo B
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: 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
+          title: Automatically generated PR from Repo A
+          body: This PR was automatically generated from a PR in Repo A.
+          branch: main
+          base: main
+          # Additional options for specifying changes to be included in the PR
+
+      - name: Create PR in Repo C
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: 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
+          title: Automatically generated PR from Repo A
+          body: This PR was automatically generated from a PR in Repo A.
+          branch: main
+          base: main
+          # Additional options for specifying changes to be included in the PR
