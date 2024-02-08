@@ -16,21 +16,15 @@ jobs:
         id: branch_name
         run: echo "::set-output name=branch::$(echo $GITHUB_REF | awk 'BEGIN {FS="/"} {print $3}')"
 
-      - name: Set up Git authentication
-        run: |
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Actions"
-          git config credential.helper 'cache --timeout=3600'  # Cache credentials for 1 hour
-
       - name: Create feature branch in Repo B
         run: |
           git checkout -b ${{ steps.branch_name.outputs.branch }}
-          git push -u origin ${{ steps.branch_name.outputs.branch }}
+          git push -u https://MoxShah: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@github.com/owner/repo-B.git ${{ steps.branch_name.outputs.branch }}
 
       - name: Create PR in Repo B
         uses: peter-evans/create-pull-request@v3
         with:
-          token: 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  # Replace with correct token for Repo B
+          token: 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
           title: Automatically generated PR from Repo A
           body: This PR was automatically generated from a PR in Repo A.
           branch: ${{ steps.branch_name.outputs.branch }}
@@ -39,12 +33,12 @@ jobs:
       - name: Create feature branch in Repo C
         run: |
           git checkout -b ${{ steps.branch_name.outputs.branch }}
-          git push -u origin ${{ steps.branch_name.outputs.branch }}
+          git push -u https://MoxShah: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@github.com/owner/repo-C.git ${{ steps.branch_name.outputs.branch }}
 
       - name: Create PR in Repo C
         uses: peter-evans/create-pull-request@v3
         with:
-          token: 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  # Replace with correct token for Repo C
+          token: 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
           title: Automatically generated PR from Repo A
           body: This PR was automatically generated from a PR in Repo A.
           branch: ${{ steps.branch_name.outputs.branch }}
