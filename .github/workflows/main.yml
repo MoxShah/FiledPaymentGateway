@@ -20,18 +20,18 @@ jobs:
         id: branch_name
         run: echo "::set-output name=branch::$(echo $GITHUB_REF | awk 'BEGIN {FS="/"} {print $3}')"
 
-      - name: Create feature branch in Repo B
+      - name: Create feature branch in Repo D
         run: |
           git checkout -b ${{ steps.branch_name.outputs.branch }}
           git push -u https://MoxShah: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@github.com/MoxShah/D ${{ steps.branch_name.outputs.branch }}
 
-      - name: Create PR in Repo B
+      - name: Create PR in Repo D
         uses: peter-evans/create-pull-request@v3
         with:
           token: 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
           title: Automatically generated PR from Repo A
           body: This PR was automatically generated from a PR in Repo A.
-          branch: ${{ steps.branch_name.outputs.branch }}
+          branch: Dev
           base: main
 
       - name: Create feature branch in Repo C
