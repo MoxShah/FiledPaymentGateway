@@ -19,7 +19,7 @@ jobs:
       - name: Create feature branch in Repo B
         run: |
           git checkout -b ${{ steps.branch_name.outputs.branch }}
-          git push -u https://MoxShah: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@github.com/owner/B.git ${{ steps.branch_name.outputs.branch }}
+          git push -u https://MoxShah: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@github.com/B ${{ steps.branch_name.outputs.branch }}
 
       - name: Create PR in Repo B
         uses: peter-evans/create-pull-request@v3
@@ -33,7 +33,7 @@ jobs:
       - name: Create feature branch in Repo C
         run: |
           git checkout -b ${{ steps.branch_name.outputs.branch }}
-          git push -u https://MoxShah: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@github.com/owner/C.git ${{ steps.branch_name.outputs.branch }}
+          git push -u https://MoxShah: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@github.com/C ${{ steps.branch_name.outputs.branch }}
 
       - name: Create PR in Repo C
         uses: peter-evans/create-pull-request@v3
